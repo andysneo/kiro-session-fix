@@ -1,4 +1,4 @@
-﻿# Kiro Session Migration Fix - ALL Workspaces
+# Kiro Session Migration Fix - ALL Workspaces
 # Fixes: sess_ prefix, workspacePaths format, missing fields
 #
 # Path resolution priority:
@@ -161,7 +161,7 @@ foreach ($ws in $workspaces) {
  "effortLevel": "high"
 }
 "@
- [IO.File]::WriteAllText($jsonPath, $newJson, [Text.Encoding]::UTF8)
+ [IO.File]::WriteAllText($jsonPath, $newJson, (New-Object System.Text.UTF8Encoding($false)))
  Rename-Item -Path $dir.FullName -NewName $newId
  }
  $wsFixCount++
@@ -204,7 +204,7 @@ foreach ($ws in $workspaces) {
  "effortLevel": "$eff"
 }
 "@
- [IO.File]::WriteAllText($jsonPath, $fixJson, [Text.Encoding]::UTF8)
+ [IO.File]::WriteAllText($jsonPath, $fixJson, (New-Object System.Text.UTF8Encoding($false)))
  }
  if ($needsFix) { $totalPathFixed++ }
  }
